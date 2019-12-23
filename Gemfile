@@ -79,3 +79,5 @@ gem 'bootstrap-sass', '>= 3.4.1'
 
 gem 'pry'
 gem 'pry-rails'
+
+gem 'font-awesome-sass', '~> 5.4.1'
