@@ -1,4 +1,12 @@
+<style>
+	.comment {
+		border: 1px solid #000;
+		padding: 50px;
+		margin-bottom: 10px;
+	}
+</style>
 
+<%= form_for(@comment) do |f| %>
 <div class="row">
 	<div class="col-xs-3">
 
@@ -36,6 +44,9 @@
                 			<% end %>
                 		<% end %>
                 	</td>
+                	<td>
+                		コメント数：　<%= @comments.count %>
+                	</td>
 				<% if current_user.id == @book.user_id %>
 					<td><%= link_to "Edit",edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
 					<td><%= link_to "Destroy",@book, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
@@ -43,6 +54,30 @@
 				</tr>
 			</table>
 
+		<h4>new comment</h4>
+			<%= f.hidden_field :book_id %>
+			<%= f.text_area :comment %>
+			<%= f.submit '送信する' %>
+
+
+		<h4>comments</h4>
+
+
+		<% if @comments.count > 0 %>
+				<% @comments.each do |c| %>
+					<div class="comment">
+						<%= c.comment %>
+						by <%= c.user.name %>
+					<% if current_user.id == c.user_id %>
+						<%= link_to '[削除する]', book_comment_path(c), method: :delete %>
+					<% end %>
+					</div>
+				<% end %>
+		<% else %>
+			<h6>まだコメントはありません</h6>
+		<% end %>
+
+
 	</div>
 </div>
-
+		<% end %>
