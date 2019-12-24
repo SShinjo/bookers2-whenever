@@ -23,31 +23,8 @@
 		<h2>Book detail</h2>
 
 		<table class="table">
-				<tr>
-					<td>
-						<%= link_to (@book.user) do %>
-						<%= attachment_image_tag(@book.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %><br>
-						<%= @book.user.name %>
-						<% end %>
-					</td>
-					<td><%= @book.title %></td>
-					<td><%= @book.body %></td>
-					<td>
-						<% if @book.favorited_by?(current_user) %>
-                			<%= link_to book_favorite_path(@book), method: :delete do %>
-                			<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                			<%= @book.favorites.count %>
-               			    <% end %>
-              			<% else %>
-                			<%= link_to book_favorite_path(@book), method: :post do %>
-                			<i class="fa fa-heart" aria-hidden="true" style="color: black;"></i>
-                			<%= @book.favorites.count %>
-                			<% end %>
-                		<% end %>
-                	</td>
-                	<td>
-                		コメント数：　<%= @comments.count %>
-                	</td>
+				<tr id="favorites_<%= @book.id %>">
+					<%= render 'books/post', book: @book %>
 				<% if current_user.id == @book.user_id %>
 					<td><%= link_to "Edit",edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
 					<td><%= link_to "Destroy",@book, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
