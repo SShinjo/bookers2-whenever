@@ -1,0 +1,13 @@
+
+
+<%= form_tag(search_path, method: :get) do %>
+	<%= text_field_tag :search %>
+
+<!-- どのモデルを検索するか -->
+	<%= select_tag :model, options_for_select(Search.models.keys.map {|k| k}) %>
+
+<!-- 検索オプション -->
+	<%= select_tag :option, options_for_select(Search.options.keys.map {|k| k}) %>
+
+	<%= submit_tag 'Search' %>
+<% end %>

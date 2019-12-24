@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   end
   resources :book_comments, only: [:create, :destroy]
 
+  get '/search' => 'searchs#search'
+
 end
