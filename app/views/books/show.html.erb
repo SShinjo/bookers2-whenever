@@ -1,7 +1,5 @@
 <style>
 	.comment {
-		border: 1px solid #000;
-		padding: 50px;
 		margin-bottom: 10px;
 	}
 </style>
@@ -57,22 +55,14 @@
 				</tr>
 			</table>
 
-		<h4>new comment</h4>
-			<%= f.hidden_field :book_id %>
-			<%= f.text_area :comment %>
-			<%= f.submit '送信する' %>
-
-
-		<h4>comments</h4>
-
 
 		<% if @comments.count > 0 %>
 				<% @comments.each do |c| %>
 					<div class="comment">
-						<%= c.comment %>
-						by <%= c.user.name %>
+						<%= attachment_image_tag(c.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg") %><br>
+						<%= c.comment %> by <%= c.user.name %>
 					<% if current_user.id == c.user_id %>
-						<%= link_to '[削除する]', book_comment_path(c), method: :delete %>
+						<%= link_to '削除する', book_comment_path(c), method: :delete, class:"btn btn-danger" %>
 					<% end %>
 					</div>
 				<% end %>
@@ -80,6 +70,16 @@
 			<h6>まだコメントはありません</h6>
 		<% end %>
 
+
+
+		<!-- コメント送信フォーム -->
+		<div class="row" style="padding: 10px;">
+			<%= hidden_field_tag :book_id, @book.id %>
+			<%= f.text_area :comment, class: "col-xs-12", rows:"5" %>
+		 <div class="pull-right">
+			<%= f.submit '送信する' %>
+		</div>
+		</div>
 
 	</div>
 </div>

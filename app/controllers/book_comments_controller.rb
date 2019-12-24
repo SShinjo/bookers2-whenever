@@ -1,7 +1,9 @@
 class BookCommentsController < ApplicationController
 
+	protect_from_forgery except: :create
+
 	def create
-		@book = Book.find(params[:book_comment][:book_id])
+		@book = Book.find(params[:book_id])
 		@comment = BookComment.new(book_id: @book.id)
 		@comment.comment = params[:book_comment][:comment]
 		@comment.user_id = current_user.id

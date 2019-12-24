@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
 
+protect_from_forgery except: :show
 
   def show
   	@book = Book.find(params[:id])
