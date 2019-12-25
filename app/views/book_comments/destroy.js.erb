@@ -1,0 +1,2 @@
+$('.comment').html("<%= j(render partial: 'books/comment', collection: @comments) %>");
+$('#favorites_<%= @book.id %>').html("<%= j(render 'books/post', book: @book) %>");

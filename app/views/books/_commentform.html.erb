@@ -1,0 +1,7 @@
+		<%= form_with( url: book_comments_path, method: :post) do |f| %>
+			<%= hidden_field_tag :book_id, book.id %>
+			<%= f.text_area :comment, class: "col-xs-12", rows:"5" %>
+		 <div class="pull-right">
+			<%= f.submit '送信する' %>
+		</div>
+		<% end %>

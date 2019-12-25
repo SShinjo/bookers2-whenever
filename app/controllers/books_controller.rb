@@ -7,8 +7,6 @@ protect_from_forgery except: :show
     @book_new = Book.new
     @user = @book.user
     @comments = @book.book_comments
-    @comment = BookComment.new
-
   end
 
   def index
