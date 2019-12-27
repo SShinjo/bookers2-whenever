@@ -82,3 +82,5 @@ gem 'pry'
 gem 'pry-rails'
 
 gem 'font-awesome-sass', '~> 5.4.1'
+
+gem 'whenever', :require => false
